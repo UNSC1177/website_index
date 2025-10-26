@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Witaj, {{ session['username'] }}</h1>
+<a href="{{ url_for('add_person') }}">Dodaj osobę</a> | <a href="{{ url_for('logout') }}">Wyloguj</a>
+<table>
+<tr>
+<th>Imię</th><th>Nazwisko</th><th>Adres</th><th>Telefon</th><th>Pokrewieństwo</th><th>Data urodzenia</th><th>Opis</th><th>Akcje</th>
+</tr>
+{% for p in osoby %}
+<tr>
+<td>{{ p.imie }}</td>
+<td>{{ p.nazwisko }}</td>
+<td>{{ p.adres }}</td>
+<td>{{ p.telefon }}</td>
+<td>{{ p.pokrewienstwo }}</td>
+<td>{{ p.data_urodzenia }}</td>
+<td>{{ p.opis }}</td>
+<td><a href="{{ url_for('edit_person', id=p.id) }}">Edytuj</a></td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
